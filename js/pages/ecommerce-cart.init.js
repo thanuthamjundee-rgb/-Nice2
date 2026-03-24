@@ -1,8 +1,3 @@
-/******/ (() => { // webpackBootstrap
-var __webpack_exports__ = {};
-/*!***************************************************!*\
-  !*** ./resources/js/pages/ecommerce-cart.init.js ***!
-  \***************************************************/
 /*
 Template Name: Minible - Admin & Dashboard Template
 Author: Themesbrand
@@ -11,10 +6,10 @@ Contact: themesbrand@gmail.com
 File: ecommerce cart Js File
 */
 
-var defaultOptions = {};
+var defaultOptions = {
+};
+
 $('[data-toggle="touchspin"]').each(function (idx, obj) {
-  var objOptions = $.extend({}, defaultOptions, $(obj).data());
-  $(obj).TouchSpin(objOptions);
+    var objOptions = $.extend({}, defaultOptions, $(obj).data());
+    $(obj).TouchSpin(objOptions);
 });
-/******/ })()
-;

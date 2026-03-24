@@ -1,8 +1,3 @@
-/******/ (() => { // webpackBootstrap
-var __webpack_exports__ = {};
-/*!*********************************************!*\
-  !*** ./resources/js/pages/timeline.init.js ***!
-  \*********************************************/
 /*
 Template Name: Minible - Admin & Dashboard Template
 Author: Themesbrand
@@ -12,23 +7,22 @@ File: Timeline Init Js File
 */
 
 $('#timeline-carousel').owlCarousel({
-  items: 1,
-  loop: false,
-  margin: 0,
-  nav: true,
-  navText: ["<i class='mdi mdi-chevron-left'></i>", "<i class='mdi mdi-chevron-right'></i>"],
-  dots: false,
-  responsive: {
-    576: {
-      items: 2
-    },
-    768: {
-      items: 3
-    },
-    1200: {
-      items: 4
+    items: 1,
+    loop: false,
+    margin:0,
+    nav: true,
+    navText : ["<i class='mdi mdi-chevron-left'></i>","<i class='mdi mdi-chevron-right'></i>"],
+    dots: false,
+    responsive:{
+        576:{
+            items:2
+        },
+
+        768:{
+            items:3
+        },
+        1200:{
+            items:4
+        },
     }
-  }
 });
-/******/ })()
-;

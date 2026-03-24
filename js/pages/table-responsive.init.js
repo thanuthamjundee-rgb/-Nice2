@@ -1,8 +1,3 @@
-/******/ (() => { // webpackBootstrap
-var __webpack_exports__ = {};
-/*!*****************************************************!*\
-  !*** ./resources/js/pages/table-responsive.init.js ***!
-  \*****************************************************/
 /*
 Template Name: Minible - Admin & Dashboard Template
 Author: Themesbrand
@@ -11,11 +6,10 @@ Contact: themesbrand@gmail.com
 File: Table responsive Init Js File
 */
 
-$(function () {
-  $('.table-responsive').responsiveTable({
-    addDisplayAllBtn: 'btn btn-secondary'
-  });
-  $('.btn-toolbar [data-toggle=dropdown]').attr('data-bs-toggle', "dropdown");
+$(function() {
+    $('.table-responsive').responsiveTable({
+        addDisplayAllBtn: 'btn btn-secondary'
+    });
+
+    $('.btn-toolbar [data-toggle=dropdown]').attr('data-bs-toggle', "dropdown");
 });
-/******/ })()
-;

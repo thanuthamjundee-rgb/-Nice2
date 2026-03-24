@@ -1,8 +1,3 @@
-/******/ (() => { // webpackBootstrap
-var __webpack_exports__ = {};
-/*!***********************************************!*\
-  !*** ./resources/js/pages/apexcharts.init.js ***!
-  \***********************************************/
 /*
 Template Name: Minible - Admin & Dashboard Template
 Author: Themesbrand
@@ -14,33 +9,35 @@ File: Apex Chart init js
 //  line chart datalabel
 
 function getChartColorsArray(chartId) {
-  if (document.getElementById(chartId) !== null) {
-    var colors = document.getElementById(chartId).getAttribute("data-colors");
-    if (colors) {
-      colors = JSON.parse(colors);
-      return colors.map(function (value) {
-        var newValue = value.replace(" ", "");
-        if (newValue.indexOf(",") === -1) {
-          var color = getComputedStyle(document.documentElement).getPropertyValue(newValue);
-          if (color) return color;else return newValue;
-          ;
-        } else {
-          var val = value.split(',');
-          if (val.length == 2) {
-            var rgbaColor = getComputedStyle(document.documentElement).getPropertyValue(val[0]);
-            rgbaColor = "rgba(" + rgbaColor + "," + val[1] + ")";
-            return rgbaColor;
-          } else {
-            return newValue;
-          }
+    if (document.getElementById(chartId) !== null) {
+        var colors = document.getElementById(chartId).getAttribute("data-colors");
+        if (colors) {
+            colors = JSON.parse(colors);
+            return colors.map(function (value) {
+                var newValue = value.replace(" ", "");
+                if (newValue.indexOf(",") === -1) {
+                    var color = getComputedStyle(document.documentElement).getPropertyValue(newValue);
+                    if (color) return color;
+                    else return newValue;;
+                } else {
+                    var val = value.split(',');
+                    if (val.length == 2) {
+                        var rgbaColor = getComputedStyle(document.documentElement).getPropertyValue(val[0]);
+                        rgbaColor = "rgba(" + rgbaColor + "," + val[1] + ")";
+                        return rgbaColor;
+                    } else {
+                        return newValue;
+                    }
+                }
+            });
         }
-      });
     }
-  }
 }
+
+
 var LinechartDatalabelColors = getChartColorsArray("line_chart_datalabel");
 if (LinechartDatalabelColors) {
-  var options = {
+var options = {
     chart: {
       height: 380,
       type: 'line',
@@ -51,9 +48,10 @@ if (LinechartDatalabelColors) {
         show: false
       }
     },
+
     colors: LinechartDatalabelColors,
     dataLabels: {
-      enabled: false
+      enabled: false,
     },
     stroke: {
       width: [3, 3],
@@ -62,18 +60,19 @@ if (LinechartDatalabelColors) {
     series: [{
       name: "High - 2018",
       data: [26, 24, 32, 36, 33, 31, 33]
-    }, {
+    },
+    {
       name: "Low - 2018",
       data: [14, 11, 16, 12, 17, 13, 12]
-    }],
+    }
+    ],
     title: {
       text: 'Average High & Low Temperature',
       align: 'left'
     },
     grid: {
       row: {
-        colors: ['transparent', 'transparent'],
-        // takes an array which will be repeated on columns
+        colors: ['transparent', 'transparent'], // takes an array which will be repeated on columns
         opacity: 0.2
       },
       borderColor: '#f1f1f1'
@@ -112,17 +111,22 @@ if (LinechartDatalabelColors) {
         },
         legend: {
           show: false
-        }
+        },
       }
     }]
-  };
-  var chart = new ApexCharts(document.querySelector("#line_chart_datalabel"), options);
+  }
+  
+  var chart = new ApexCharts(
+    document.querySelector("#line_chart_datalabel"),
+    options
+  );
+  
   chart.render();
-}
+  }
 
-//  line chart datalabel
-var LinechartDashedColors = getChartColorsArray("line_chart_dashed");
-if (LinechartDashedColors) {
+  //  line chart datalabel
+  var LinechartDashedColors = getChartColorsArray("line_chart_dashed");
+  if (LinechartDashedColors) {
   var options = {
     chart: {
       height: 380,
@@ -131,8 +135,8 @@ if (LinechartDashedColors) {
         enabled: false
       },
       toolbar: {
-        show: false
-      }
+        show: false,
+    }
     },
     colors: LinechartDashedColors,
     dataLabels: {
@@ -144,426 +148,484 @@ if (LinechartDashedColors) {
       dashArray: [0, 8, 5]
     },
     series: [{
-      name: "Session Duration",
-      data: [45, 52, 38, 24, 33, 26, 21, 20, 6, 8, 15, 10]
-    }, {
-      name: "Page Views",
-      data: [36, 42, 60, 42, 13, 18, 29, 37, 36, 51, 32, 35]
-    }, {
-      name: 'Total Visits',
-      data: [89, 56, 74, 98, 72, 38, 64, 46, 84, 58, 46, 49]
-    }],
+        name: "Session Duration",
+        data: [45, 52, 38, 24, 33, 26, 21, 20, 6, 8, 15, 10]
+      },
+      {
+        name: "Page Views",
+        data: [36, 42, 60, 42, 13, 18, 29, 37, 36, 51, 32, 35]
+      },
+      {
+        name: 'Total Visits',
+        data: [89, 56, 74, 98, 72, 38, 64, 46, 84, 58, 46, 49]
+      }
+    ],
     title: {
       text: 'Page Statistics',
       align: 'left'
     },
     markers: {
       size: 0,
+
       hover: {
         sizeOffset: 6
       }
     },
     xaxis: {
-      categories: ['01 Jan', '02 Jan', '03 Jan', '04 Jan', '05 Jan', '06 Jan', '07 Jan', '08 Jan', '09 Jan', '10 Jan', '11 Jan', '12 Jan']
+      categories: ['01 Jan', '02 Jan', '03 Jan', '04 Jan', '05 Jan', '06 Jan', '07 Jan', '08 Jan', '09 Jan',
+        '10 Jan', '11 Jan', '12 Jan'
+      ],
     },
     tooltip: {
       y: [{
         title: {
-          formatter: function formatter(val) {
-            return val + " (mins)";
+          formatter: function (val) {
+            return val + " (mins)"
           }
         }
       }, {
         title: {
-          formatter: function formatter(val) {
-            return val + " per session";
+          formatter: function (val) {
+            return val + " per session"
           }
         }
       }, {
         title: {
-          formatter: function formatter(val) {
+          formatter: function (val) {
             return val;
           }
         }
       }]
     },
     grid: {
-      borderColor: '#f1f1f1'
+      borderColor: '#f1f1f1',
     }
-  };
-  var chart = new ApexCharts(document.querySelector("#line_chart_dashed"), options);
+}
+
+var chart = new ApexCharts(
+document.querySelector("#line_chart_dashed"),
+options
+);
+
   chart.render();
+
 }
 
 //   spline_area
 var AreachartSplineColors = getChartColorsArray("spline_area");
 if (AreachartSplineColors) {
-  var options = {
+var options = {
     chart: {
-      height: 350,
-      type: 'area'
+        height: 350,
+        type: 'area',
     },
     dataLabels: {
-      enabled: false
+        enabled: false
     },
     stroke: {
-      curve: 'smooth',
-      width: 3
+        curve: 'smooth',
+        width: 3,
     },
     series: [{
-      name: 'series1',
-      data: [34, 40, 28, 52, 42, 109, 100]
+        name: 'series1',
+        data: [34, 40, 28, 52, 42, 109, 100]
     }, {
-      name: 'series2',
-      data: [32, 60, 34, 46, 34, 52, 41]
+        name: 'series2',
+        data: [32, 60, 34, 46, 34, 52, 41]
     }],
     colors: AreachartSplineColors,
     xaxis: {
-      type: 'datetime',
-      categories: ["2018-09-19T00:00:00", "2018-09-19T01:30:00", "2018-09-19T02:30:00", "2018-09-19T03:30:00", "2018-09-19T04:30:00", "2018-09-19T05:30:00", "2018-09-19T06:30:00"]
+        type: 'datetime',
+        categories: ["2018-09-19T00:00:00", "2018-09-19T01:30:00", "2018-09-19T02:30:00", "2018-09-19T03:30:00", "2018-09-19T04:30:00", "2018-09-19T05:30:00", "2018-09-19T06:30:00"],                
     },
     grid: {
-      borderColor: '#f1f1f1'
+        borderColor: '#f1f1f1',
     },
     tooltip: {
-      x: {
-        format: 'dd/MM/yy HH:mm'
-      }
+        x: {
+            format: 'dd/MM/yy HH:mm'
+        },
     }
-  };
-  var chart = new ApexCharts(document.querySelector("#spline_area"), options);
-  chart.render();
+}
+
+var chart = new ApexCharts(
+    document.querySelector("#spline_area"),
+    options
+);
+
+chart.render();
+
 }
 
 // column chart
 var BarchartColumnColors = getChartColorsArray("column_chart");
 if (BarchartColumnColors) {
-  var options = {
+var options = {
     chart: {
-      height: 350,
-      type: 'bar',
-      toolbar: {
-        show: false
-      }
+        height: 350,
+        type: 'bar',
+        toolbar: {
+            show: false,
+        }
     },
     plotOptions: {
-      bar: {
-        horizontal: false,
-        columnWidth: '45%',
-        endingShape: 'rounded'
-      }
+        bar: {
+            horizontal: false,
+            columnWidth: '45%',
+            endingShape: 'rounded'	
+        },
     },
     dataLabels: {
-      enabled: false
+        enabled: false
     },
     stroke: {
-      show: true,
-      width: 2,
-      colors: ['transparent']
+        show: true,
+        width: 2,
+        colors: ['transparent']
     },
     series: [{
-      name: 'Net Profit',
-      data: [46, 57, 59, 54, 62, 58, 64, 60, 66]
+        name: 'Net Profit',
+        data: [46, 57, 59, 54, 62, 58, 64, 60, 66]
     }, {
-      name: 'Revenue',
-      data: [74, 83, 102, 97, 86, 106, 93, 114, 94]
+        name: 'Revenue',
+        data: [74, 83, 102, 97, 86, 106, 93, 114, 94]
     }, {
-      name: 'Free Cash Flow',
-      data: [37, 42, 38, 26, 47, 50, 54, 55, 43]
+        name: 'Free Cash Flow',
+        data: [37, 42, 38, 26, 47, 50, 54, 55, 43]
     }],
     colors: BarchartColumnColors,
     xaxis: {
-      categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct']
+        categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
     },
     yaxis: {
-      title: {
-        text: '$ (thousands)'
-      }
+        title: {
+            text: '$ (thousands)'
+        }
     },
     grid: {
-      borderColor: '#f1f1f1'
+        borderColor: '#f1f1f1',
     },
     fill: {
-      opacity: 1
+        opacity: 1
+
     },
     tooltip: {
-      y: {
-        formatter: function formatter(val) {
-          return "$ " + val + " thousands";
+        y: {
+            formatter: function (val) {
+                return "$ " + val + " thousands"
+            }
         }
-      }
     }
-  };
-  var chart = new ApexCharts(document.querySelector("#column_chart"), options);
-  chart.render();
 }
+
+var chart = new ApexCharts(
+    document.querySelector("#column_chart"),
+    options
+);
+
+chart.render();
+
+}
+
 
 // column chart with datalabels
 var BarchartColumnChartColors = getChartColorsArray("column_chart_datalabel");
 if (BarchartColumnChartColors) {
-  var options = {
+var options = {
     chart: {
-      height: 350,
-      type: 'bar',
-      toolbar: {
-        show: false
-      }
+        height: 350,
+        type: 'bar',
+        toolbar: {
+            show: false,
+        }
     },
     plotOptions: {
-      bar: {
-        dataLabels: {
-          position: 'top' // top, center, bottom
+        bar: {
+            dataLabels: {
+                position: 'top', // top, center, bottom
+            },
         }
-      }
     },
     dataLabels: {
-      enabled: true,
-      formatter: function formatter(val) {
-        return val + "%";
-      },
-      offsetY: -20,
-      style: {
-        fontSize: '12px',
-        colors: ["#304758"]
-      }
+        enabled: true,
+        formatter: function (val) {
+            return val + "%";
+        },
+        offsetY: -20,
+        style: {
+            fontSize: '12px',
+            colors: ["#304758"]
+        }
     },
     series: [{
-      name: 'Inflation',
-      data: [2.5, 3.2, 5.0, 10.1, 4.2, 3.8, 3, 2.4, 4.0, 1.2, 3.5, 0.8]
+        name: 'Inflation',
+        data: [2.5, 3.2, 5.0, 10.1, 4.2, 3.8, 3, 2.4, 4.0, 1.2, 3.5, 0.8]
     }],
     colors: BarchartColumnChartColors,
     grid: {
-      borderColor: '#f1f1f1'
+        borderColor: '#f1f1f1',
     },
     xaxis: {
-      categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-      position: 'top',
-      labels: {
-        offsetY: -18
-      },
-      axisBorder: {
-        show: false
-      },
-      axisTicks: {
-        show: false
-      },
-      crosshairs: {
-        fill: {
-          type: 'gradient',
-          gradient: {
-            colorFrom: '#D8E3F0',
-            colorTo: '#BED1E6',
-            stops: [0, 100],
-            opacityFrom: 0.4,
-            opacityTo: 0.5
-          }
+        categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        position: 'top',
+        labels: {
+            offsetY: -18,
+
+        },
+        axisBorder: {
+            show: false
+        },
+        axisTicks: {
+            show: false
+        },
+        crosshairs: {
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    colorFrom: '#D8E3F0',
+                    colorTo: '#BED1E6',
+                    stops: [0, 100],
+                    opacityFrom: 0.4,
+                    opacityTo: 0.5,
+                }
+            }
+        },
+        tooltip: {
+            enabled: true,
+            offsetY: -35,
+
         }
-      },
-      tooltip: {
-        enabled: true,
-        offsetY: -35
-      }
     },
     fill: {
-      gradient: {
-        shade: 'light',
-        type: "horizontal",
-        shadeIntensity: 0.25,
-        gradientToColors: undefined,
-        inverseColors: true,
-        opacityFrom: 1,
-        opacityTo: 1,
-        stops: [50, 0, 100, 100]
-      }
+        gradient: {
+            shade: 'light',
+            type: "horizontal",
+            shadeIntensity: 0.25,
+            gradientToColors: undefined,
+            inverseColors: true,
+            opacityFrom: 1,
+            opacityTo: 1,
+            stops: [50, 0, 100, 100]
+        },
     },
     yaxis: {
-      axisBorder: {
-        show: false
-      },
-      axisTicks: {
-        show: false
-      },
-      labels: {
-        show: false,
-        formatter: function formatter(val) {
-          return val + "%";
+        axisBorder: {
+            show: false
+        },
+        axisTicks: {
+            show: false,
+        },
+        labels: {
+            show: false,
+            formatter: function (val) {
+                return val + "%";
+            }
         }
-      }
+
     },
     title: {
-      text: 'Monthly Inflation in Argentina, 2002',
-      floating: true,
-      offsetY: 320,
-      align: 'center',
-      style: {
-        color: '#444'
-      }
-    }
-  };
-  var chart = new ApexCharts(document.querySelector("#column_chart_datalabel"), options);
-  chart.render();
+        text: 'Monthly Inflation in Argentina, 2002',
+        floating: true,
+        offsetY: 320,
+        align: 'center',
+        style: {
+            color: '#444'
+        }
+    },
 }
+
+var chart = new ApexCharts(
+    document.querySelector("#column_chart_datalabel"),
+    options
+);
+
+chart.render();
+
+}
+
 
 // Bar chart
 var BarchartBarColors = getChartColorsArray("bar_chart");
 if (BarchartBarColors) {
-  var options = {
+var options = {
     chart: {
-      height: 350,
-      type: 'bar',
-      toolbar: {
-        show: false
-      }
+        height: 350,
+        type: 'bar',
+        toolbar: {
+            show: false,
+        }
     },
     plotOptions: {
-      bar: {
-        horizontal: true
-      }
+        bar: {
+            horizontal: true,
+        }
     },
     dataLabels: {
-      enabled: false
+        enabled: false
     },
     series: [{
-      data: [380, 430, 450, 475, 550, 584, 780, 1100, 1220, 1365]
+        data: [380, 430, 450, 475, 550, 584, 780, 1100, 1220, 1365]
     }],
     colors: BarchartBarColors,
     grid: {
-      borderColor: '#f1f1f1'
+        borderColor: '#f1f1f1',
     },
     xaxis: {
-      categories: ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy', 'France', 'Japan', 'United States', 'China', 'Germany']
+        categories: ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy', 'France', 'Japan', 'United States', 'China', 'Germany'],
     }
-  };
-  var chart = new ApexCharts(document.querySelector("#bar_chart"), options);
-  chart.render();
+}
+
+var chart = new ApexCharts(
+    document.querySelector("#bar_chart"),
+    options
+);
+
+chart.render();
+
 }
 
 // Mixed chart
 var LinechartMixedColors = getChartColorsArray("mixed_chart");
 if (LinechartMixedColors) {
-  var options = {
+var options = {
     chart: {
-      height: 350,
-      type: 'line',
-      stacked: false,
-      toolbar: {
-        show: false
-      }
+        height: 350,
+        type: 'line',
+        stacked: false,
+        toolbar: {
+            show: false
+        }
     },
     stroke: {
-      width: [0, 2, 4],
-      curve: 'smooth'
+        width: [0, 2, 4],
+        curve: 'smooth'
     },
     plotOptions: {
-      bar: {
-        columnWidth: '50%'
-      }
+        bar: {
+            columnWidth: '50%'
+        }
     },
     colors: LinechartMixedColors,
     series: [{
-      name: 'Team A',
-      type: 'column',
-      data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30]
+        name: 'Team A',
+        type: 'column',
+        data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30]
     }, {
-      name: 'Team B',
-      type: 'area',
-      data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43]
+        name: 'Team B',
+        type: 'area',
+        data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43]
     }, {
-      name: 'Team C',
-      type: 'line',
-      data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39]
+        name: 'Team C',
+        type: 'line',
+        data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39]
     }],
     fill: {
-      opacity: [0.85, 0.25, 1],
-      gradient: {
-        inverseColors: false,
-        shade: 'light',
-        type: "vertical",
-        opacityFrom: 0.85,
-        opacityTo: 0.55,
-        stops: [0, 100, 100, 100]
-      }
+        opacity: [0.85, 0.25, 1],
+        gradient: {
+            inverseColors: false,
+            shade: 'light',
+            type: "vertical",
+            opacityFrom: 0.85,
+            opacityTo: 0.55,
+            stops: [0, 100, 100, 100]
+        }
     },
     labels: ['01/01/2003', '02/01/2003', '03/01/2003', '04/01/2003', '05/01/2003', '06/01/2003', '07/01/2003', '08/01/2003', '09/01/2003', '10/01/2003', '11/01/2003'],
     markers: {
-      size: 0
+        size: 0
     },
+
     xaxis: {
-      type: 'datetime'
+        type: 'datetime'
     },
     yaxis: {
-      title: {
-        text: 'Points'
-      }
+        title: {
+            text: 'Points',
+        },
     },
     tooltip: {
-      shared: true,
-      intersect: false,
-      y: {
-        formatter: function formatter(y) {
-          if (typeof y !== "undefined") {
-            return y.toFixed(0) + " points";
-          }
-          return y;
+        shared: true,
+        intersect: false,
+        y: {
+            formatter: function (y) {
+                if (typeof y !== "undefined") {
+                    return y.toFixed(0) + " points";
+                }
+                return y;
+  
+            }
         }
-      }
     },
     grid: {
-      borderColor: '#f1f1f1'
+        borderColor: '#f1f1f1'
     }
-  };
-  var chart = new ApexCharts(document.querySelector("#mixed_chart"), options);
+  }
+  
+  var chart = new ApexCharts(
+    document.querySelector("#mixed_chart"),
+    options
+  );
+
   chart.render();
+
 }
+
 
 //  Radial chart
 var RadiachartRadialColors = getChartColorsArray("radial_chart");
 if (RadiachartRadialColors) {
-  var options = {
+var options = {
     chart: {
-      height: 370,
-      type: 'radialBar'
+        height: 370,
+        type: 'radialBar',
     },
     plotOptions: {
-      radialBar: {
-        dataLabels: {
-          name: {
-            fontSize: '22px'
-          },
-          value: {
-            fontSize: '16px'
-          },
-          total: {
-            show: true,
-            label: 'Total',
-            formatter: function formatter(w) {
-              // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-              return 249;
+        radialBar: {
+            dataLabels: {
+                name: {
+                    fontSize: '22px',
+                },
+                value: {
+                    fontSize: '16px',
+                },
+                total: {
+                    show: true,
+                    label: 'Total',
+                    formatter: function (w) {
+                        // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
+                        return 249
+                    }
+                }
             }
-          }
         }
-      }
     },
     series: [44, 55, 67, 83],
     labels: ['Computer', 'Tablet', 'Laptop', 'Mobile'],
-    colors: RadiachartRadialColors
-  };
-  var chart = new ApexCharts(document.querySelector("#radial_chart"), options);
-  chart.render();
+    colors: RadiachartRadialColors,
+    
 }
+
+var chart = new ApexCharts(
+    document.querySelector("#radial_chart"),
+    options
+);
+
+chart.render();
+}
+
 
 // pie chart
 var PiechartPieColors = getChartColorsArray("pie_chart");
 if (PiechartPieColors) {
-  var options = {
-    chart: {
+var options = {
+  chart: {
       height: 320,
-      type: 'pie'
-    },
-    series: [44, 55, 41, 17, 15],
-    labels: ["Series 1", "Series 2", "Series 3", "Series 4", "Series 5"],
-    colors: PiechartPieColors,
-    legend: {
+      type: 'pie',
+  }, 
+  series: [44, 55, 41, 17, 15],
+  labels: ["Series 1", "Series 2", "Series 3", "Series 4", "Series 5"],
+  colors: PiechartPieColors,
+  legend: {
       show: true,
       position: 'bottom',
       horizontalAlign: 'center',
@@ -571,35 +633,42 @@ if (PiechartPieColors) {
       floating: false,
       fontSize: '14px',
       offsetX: 0
-    },
-    responsive: [{
+  },
+  responsive: [{
       breakpoint: 600,
       options: {
-        chart: {
-          height: 240
-        },
-        legend: {
-          show: false
-        }
+          chart: {
+              height: 240
+          },
+          legend: {
+              show: false
+          },
       }
-    }]
-  };
-  var chart = new ApexCharts(document.querySelector("#pie_chart"), options);
-  chart.render();
+  }]
+
+}
+
+var chart = new ApexCharts(
+  document.querySelector("#pie_chart"),
+  options
+);
+
+chart.render();
+
 }
 
 // Donut chart
 var DonutchartDonutColors = getChartColorsArray("donut_chart");
 if (DonutchartDonutColors) {
-  var options = {
-    chart: {
+var options = {
+  chart: {
       height: 320,
-      type: 'donut'
-    },
-    series: [44, 55, 41, 17, 15],
-    labels: ["Series 1", "Series 2", "Series 3", "Series 4", "Series 5"],
-    colors: DonutchartDonutColors,
-    legend: {
+      type: 'donut',
+  }, 
+  series: [44, 55, 41, 17, 15],
+  labels: ["Series 1", "Series 2", "Series 3", "Series 4", "Series 5"],
+  colors: DonutchartDonutColors,
+  legend: {
       show: true,
       position: 'bottom',
       horizontalAlign: 'center',
@@ -607,21 +676,26 @@ if (DonutchartDonutColors) {
       floating: false,
       fontSize: '14px',
       offsetX: 0
-    },
-    responsive: [{
+  },
+  responsive: [{
       breakpoint: 600,
       options: {
-        chart: {
-          height: 240
-        },
-        legend: {
-          show: false
-        }
+          chart: {
+              height: 240
+          },
+          legend: {
+              show: false
+          },
       }
-    }]
-  };
-  var chart = new ApexCharts(document.querySelector("#donut_chart"), options);
-  chart.render();
+  }]
+
 }
-/******/ })()
-;
+
+var chart = new ApexCharts(
+  document.querySelector("#donut_chart"),
+  options
+);
+
+chart.render();
+
+}
